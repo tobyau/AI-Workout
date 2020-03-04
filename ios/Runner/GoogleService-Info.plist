@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>838012480436-9m0l25mc8clpfe6316n8kmerhuj8ahjq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.838012480436-9m0l25mc8clpfe6316n8kmerhuj8ahjq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA5aKL3_wyL6MueQyKJ0aTf5Q6fYkdtXgw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>838012480436</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.aiWorkout</string>
+	<key>PROJECT_ID</key>
+	<string>ai-workout-4be10</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ai-workout-4be10.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:838012480436:ios:8635cd3c6c1e3c011ce0e1</string>
+	<key>DATABASE_URL</key>
+	<string>https://ai-workout-4be10.firebaseio.com</string>
+</dict>
+</plist>
