@@ -1,14 +1,21 @@
 # ai_workout
 
-# Compiling 
+## Compiling 
 ```flutter run``` -> This should also install dependencies 
 
-# Clean 
+## Clean 
 ```flutter clean``` 
 
+## Xcode setup for Analytics Debugging
+1. In Xcode, select Product > Scheme > Edit scheme...
+2. Select Run from the left menu.
+3. Select the Arguments tab.
+4. In the Arguments Passed On Launch section, add -FIRAnalyticsDebugEnabled.
+
+
+## Resources  
 [https://firebase.google.com/docs/flutter/setup?platform=ios](https://firebase.google.com/docs/flutter/setup?platform=ios)
 
 [https://console.firebase.google.com/u/1/project/ai-workout-4be10/overview](https://console.firebase.google.com/u/1/project/ai-workout-4be10/overview)
 
-Firebase Plugins
-[https://firebase.google.com/docs/ios/setup#available-pods](https://firebase.google.com/docs/ios/setup#available-pods)
+Firebase Plugins: [https://firebase.google.com/docs/ios/setup#available-pods](https://firebase.google.com/docs/ios/setup#available-pods)
