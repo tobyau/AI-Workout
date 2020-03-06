@@ -1,8 +1,5 @@
 # ai_workout
 
-## Compiling 
-```flutter run``` -> This should also install dependencies 
-
 ## Clean 
 ```flutter clean``` 
 
@@ -13,6 +10,9 @@
 4. In the Arguments Passed On Launch section, add -FIRAnalyticsDebugEnabled.
 5. Run the app in XCode 
 6. See your debug event in firebase DebugView
+
+## Compiling 
+```flutter run``` -> This should also install dependencies 
 
 
 ## Resources  
