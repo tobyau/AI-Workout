@@ -1,6 +1,12 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:ai_workout/pages/camera_screen.dart';
+
 
 class HomePage extends StatefulWidget{
+  final List<CameraDescription> cameras;
+  HomePage({this.cameras});
+
   @override 
   _HomePageState createState() => new _HomePageState(); 
 }
@@ -31,6 +37,12 @@ class _HomePageState extends State<HomePage>
           new Tab(text: "SETTINGS",),
         ],
         ),
+      ),
+      body: TabBarView(
+        controller:_tabController, 
+        children: <Widget>[
+          CameraScreen(widget.cameras),
+        ],
       ),
     );
   }

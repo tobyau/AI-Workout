@@ -2,16 +2,22 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-//import 'dart:async';
-
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:ai_workout/HomePage.dart';
+import 'package:camera/camera.dart';
+import 'tabs_page.dart';
 //import 'package:firebase_analytics/firebase_analytics.dart';
 //import 'package:firebase_analytics/observer.dart';
 
-import 'tabs_page.dart';
-void main() => runApp(new MyApp());
+List<CameraDescription> cameras; 
 
+Future<Null> main() async {
+  //initialize camera 
+  //pass it to home page below
+  cameras = await availableCameras();
+  runApp(new MyApp());
+}
 class MyApp extends StatelessWidget {
   @override 
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class MyApp extends StatelessWidget {
         primaryColor: new Color(0xff83AF9B), 
         accentColor: new Color(0xffCBC8A9), 
       ),
-      home: new HomePage(),
+      home: new HomePage(cameras:cameras),
     );
   }
 }
