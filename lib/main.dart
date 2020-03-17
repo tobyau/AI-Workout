@@ -9,6 +9,8 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
 import 'tabs_page.dart';
+import 'package:ai_workout/pages/root.dart';
+import 'package:ai_workout/components/auth.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,25 +18,44 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static FirebaseAnalytics analytics = FirebaseAnalytics();
-  static FirebaseAnalyticsObserver observer =
-      FirebaseAnalyticsObserver(analytics: analytics);
-
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Firebase Analytics',
-      theme: ThemeData(
+    return new MaterialApp(
+      title: 'Flutter Login',
+      theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      navigatorObservers: <NavigatorObserver>[observer],
-      home: MyHomePage(
-        title: 'Firebase Analytics',
-        analytics: analytics,
-        observer: observer,
-      ),
+      home: new RootPage(auth: new Auth()),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
+      debugShowCheckedModeBanner: false,
     );
   }
 }
+
+// class MyApp extends StatelessWidget {
+//   static FirebaseAnalytics analytics = FirebaseAnalytics();
+//   static FirebaseAnalyticsObserver observer =
+//       FirebaseAnalyticsObserver(analytics: analytics);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Firebase Analytics',
+//       theme: ThemeData(
+//         primarySwatch: Colors.blue,
+//       ),
+//       navigatorObservers: <NavigatorObserver>[observer],
+//       home: MyHomePage(
+//         title: 'Firebase Analytics',
+//         analytics: analytics,
+//         observer: observer,
+//       ),
+//     );
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title, this.analytics, this.observer})
