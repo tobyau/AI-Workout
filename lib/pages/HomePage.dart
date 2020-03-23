@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:ai_workout/components/auth.dart';
 
-class HomePage extends StatefulWidget{
-  @override 
-  _HomePageState createState() => new _HomePageState(); 
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+
+  @override
+  State<StatefulWidget> createState() => new _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> 
   with SingleTickerProviderStateMixin{
@@ -15,6 +24,15 @@ class _HomePageState extends State<HomePage>
       _tabController = new TabController(vsync: this, initialIndex: 1, length: 4);
     }
   
+    signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context){
     return new Scaffold(
@@ -31,6 +49,12 @@ class _HomePageState extends State<HomePage>
           new Tab(text: "SETTINGS",),
         ],
         ),
+        actions: <Widget>[
+            new FlatButton(
+                child: new Text('Logout',
+                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                onPressed: signOut)
+          ],
       ),
     );
   }
