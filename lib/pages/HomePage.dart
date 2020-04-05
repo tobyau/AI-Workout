@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ai_workout/components/auth.dart';
+import 'package:ai_workout/components/camera.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
@@ -32,30 +33,43 @@ class _HomePageState extends State<HomePage>
       print(e);
     }
   }
-
+  
   @override
-  Widget build(BuildContext context){
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("AI-Workout"), 
-        elevation: 0.7,
-        bottom: new TabBar(
-        controller: _tabController,
-        indicatorColor: Colors.white, 
-        tabs: <Widget>[
-          new Tab(icon: new Icon(Icons.camera_alt)),
-          new Tab(text: "WORKOUTS"),
-          new Tab(text: "PROFILE",),
-          new Tab(text: "SETTINGS",),
-        ],
-        ),
-        actions: <Widget>[
-            new FlatButton(
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(icon: new Icon(Icons.camera_alt)),
+                Tab(text: "WORKOUTS"),
+                Tab(text: "PROFILE",),
+                Tab(text: "SETTINGS",),
+              ],
+            ),
+            title: Text("AI-Workout"),
+            elevation: 0.7,
+            actions: <Widget>[
+              new FlatButton(
                 child: new Text('Logout',
-                    style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+                  style: new TextStyle(fontSize: 17.0, color: Colors.white)),
                 onPressed: signOut)
-          ],
+            ],
+          ),
+          body: TabBarView(
+            children: [
+              // Icon(Icons.camera_alt),
+              new TakePictureScreen(camera: null),
+              Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+              Icon(Icons.directions_transit)
+            ],
+          ),
+        ),
       ),
     );
   }
+
 }
