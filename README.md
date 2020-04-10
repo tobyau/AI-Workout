@@ -12,7 +12,10 @@
 6. See your debug event in firebase DebugView
 
 ## Compiling 
-```flutter run``` -> This should also install dependencies 
+```
+open -a Simulator
+flutter run
+``` 
 
 
 ## Resources  
@@ -23,3 +26,5 @@
 Firebase Plugins: [https://firebase.google.com/docs/ios/setup#available-pods](https://firebase.google.com/docs/ios/setup#available-pods)
 
 Vaidate with debugview: [https://support.google.com/firebase/answer/7201382?hl=en&utm_id=ad&authuser=1](https://support.google.com/firebase/answer/7201382?hl=en&utm_id=ad&authuser=1)
+
+Analytics: [https://medium.com/flutterpub/using-firebase-analytics-in-flutter-2da5be205e4](https://medium.com/flutterpub/using-firebase-analytics-in-flutter-2da5be205e4)
