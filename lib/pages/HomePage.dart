@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ai_workout/components/auth.dart';
 import 'package:ai_workout/components/camera.dart';
 
+import './WorkoutPage.dart';
+
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.auth, this.userId, this.logoutCallback})
       : super(key: key);
@@ -17,12 +19,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> 
   with SingleTickerProviderStateMixin{
-    TabController _tabController; 
-
     @override
     void initState(){
       super.initState(); 
-      _tabController = new TabController(vsync: this, initialIndex: 1, length: 4);
     }
   
     signOut() async {
@@ -34,42 +33,96 @@ class _HomePageState extends State<HomePage>
     }
   }
   
+  // signOut() async {
+  //   try {
+  //     await widget.auth.signOut();
+  //     widget.logoutCallback();
+  //   } catch (e) {
+  //     print(e);
+  // }
+  
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    TakePictureScreen(camera: null),
+    WorkoutPage(),
+    Icon(Icons.directions_bike),
+  ];
+  
+  // @override
+  // Widget build(BuildContext context) {
+  //   return MaterialApp(
+  //     home: DefaultTabController(
+  //       length: 3,
+  //       child: Scaffold(
+  //         appBar: AppBar(
+  //           bottom: TabBar(
+  //             tabs: [
+  //               Tab(text: "HOME",),
+  //               Tab(text: "WORKOUT"),
+  //               Tab(text: "PROFILE",),
+  //             ],
+  //           ),
+  //           title: Text("AI-Workout"),
+  //           elevation: 0.7,
+  //           actions: <Widget>[
+  //             new FlatButton(
+  //               child: new Text('Logout',
+  //                 style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+  //               onPressed: signOut)
+  //           ],
+  //         ),
+  //         body: TabBarView(
+  //           children: <Widget> [
+  //             new TakePictureScreen(camera: null),
+  //             new WorkoutPage(),
+  //             Icon(Icons.directions_bike),
+  //           ],
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+  
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DefaultTabController(
-        length: 4,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              tabs: [
-                Tab(icon: new Icon(Icons.camera_alt)),
-                Tab(text: "WORKOUTS"),
-                Tab(text: "PROFILE",),
-                Tab(text: "SETTINGS",),
-              ],
-            ),
-            title: Text("AI-Workout"),
-            elevation: 0.7,
-            actions: <Widget>[
-              new FlatButton(
-                child: new Text('Logout',
-                  style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-                onPressed: signOut)
-            ],
-          ),
-          body: TabBarView(
-            children: [
-              // Icon(Icons.camera_alt),
-              new TakePictureScreen(camera: null),
-              Icon(Icons.directions_transit),
-              Icon(Icons.directions_bike),
-              Icon(Icons.directions_transit)
-            ],
-          ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("AI-Workout"),
+          elevation: 0.7,
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text('Logout',
+              style: new TextStyle(fontSize: 17.0, color: Colors.white)),
+              onPressed: signOut)
+          ],
         ),
-      ),
+        body: _children[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: onTabTapped,
+          currentIndex: _currentIndex, 
+          items: [
+            new BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('Home'),
+            ),
+            new BottomNavigationBarItem(
+              icon: Icon(Icons.accessibility),
+              title: Text('Workout'),
+            ),
+            new BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile')
+            )
+          ],
+        ),
+      )
     );
   }
-
 }

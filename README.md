@@ -17,6 +17,12 @@ open -a Simulator
 flutter run
 ``` 
 
+## Force Pull 
+```
+git fetch origin branch_name
+git reset --hard origin/master
+```
+
 
 ## Resources  
 [https://firebase.google.com/docs/flutter/setup?platform=ios](https://firebase.google.com/docs/flutter/setup?platform=ios)

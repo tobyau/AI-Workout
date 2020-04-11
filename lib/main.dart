@@ -9,6 +9,8 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:ai_workout/pages/root.dart';
 import 'package:ai_workout/components/auth.dart';
 
+import './pages/splash_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -23,7 +25,8 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new RootPage(auth: new Auth()),
+      // home: new RootPage(auth: new Auth()),
+      home: new SplashScreen(),
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
