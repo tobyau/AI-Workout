@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../pages/HomePage.dart';
+import '../pages/ResultsPage.dart';
 
 class CardList extends StatelessWidget{
   final List<String> items = ['Lats', 'Upper Back', 'Lower Back', 'Lats', 'Upper Back', 'Lower Back'];
@@ -28,7 +29,7 @@ class CardItem extends StatelessWidget {
           onPressed: () {
             Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => ResultsPage()),
           );
           },
           color: Colors.white,
