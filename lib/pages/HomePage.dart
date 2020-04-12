@@ -33,55 +33,16 @@ class _HomePageState extends State<HomePage>
     }
   }
   
-  // signOut() async {
-  //   try {
-  //     await widget.auth.signOut();
-  //     widget.logoutCallback();
-  //   } catch (e) {
-  //     print(e);
-  // }
-  
   int _currentIndex = 0;
   final List<Widget> _children = [
     TakePictureScreen(camera: null),
-    WorkoutPage(),
-    Icon(Icons.directions_bike),
+    WorkoutPage(
+      title: 'Back', 
+      cards: ['Lats', 'Upper Back', 'Lower Back', 'Lats', 'Upper Back', 'Lower Back']),
+    Center(
+      child: Icon(Icons.directions_bike),
+    )
   ];
-  
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     home: DefaultTabController(
-  //       length: 3,
-  //       child: Scaffold(
-  //         appBar: AppBar(
-  //           bottom: TabBar(
-  //             tabs: [
-  //               Tab(text: "HOME",),
-  //               Tab(text: "WORKOUT"),
-  //               Tab(text: "PROFILE",),
-  //             ],
-  //           ),
-  //           title: Text("AI-Workout"),
-  //           elevation: 0.7,
-  //           actions: <Widget>[
-  //             new FlatButton(
-  //               child: new Text('Logout',
-  //                 style: new TextStyle(fontSize: 17.0, color: Colors.white)),
-  //               onPressed: signOut)
-  //           ],
-  //         ),
-  //         body: TabBarView(
-  //           children: <Widget> [
-  //             new TakePictureScreen(camera: null),
-  //             new WorkoutPage(),
-  //             Icon(Icons.directions_bike),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
   
   void onTabTapped(int index) {
     setState(() {

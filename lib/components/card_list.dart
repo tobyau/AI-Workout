@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../pages/HomePage.dart';
 
 class CardList extends StatelessWidget{
-  final List<String> items = ['Lats', 'Upper Back', 'Lower Back', 'Lats', 'Upper Back', 'Lower Back'];
+  final List<String> items;
+  
+  CardList({ this.items });
   
   @override
   Widget build(BuildContext context) {
