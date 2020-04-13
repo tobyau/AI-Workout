@@ -20,7 +20,7 @@ flutter run
 ## Force Pull 
 ```
 git fetch origin branch_name
-git reset --hard origin/master
+git reset --hard origin/branch_name
 ```
 
 

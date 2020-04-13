@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../components/card_list.dart';
 
 class WorkoutPage extends StatefulWidget {
+  final String title; 
+  final List<String> cards;
+  
+  WorkoutPage({ this.title, this.cards });
   
   @override 
     State<StatefulWidget> createState() {
@@ -21,7 +25,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
           Image.asset('assets/temp.jpg'),
           Container(
             child: Text(
-              'Back',
+              widget.title,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 30
@@ -29,7 +33,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             ),
             padding: EdgeInsets.fromLTRB(30,130,30,20),
           ),
-          CardList()
+          CardList(items: widget.cards)
         ]
       )
     );

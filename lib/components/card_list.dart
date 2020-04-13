@@ -4,13 +4,15 @@ import '../pages/HomePage.dart';
 import '../pages/ResultsPage.dart';
 
 class CardList extends StatelessWidget{
-  final List<String> items = ['Lats', 'Upper Back', 'Lower Back', 'Lats', 'Upper Back', 'Lower Back'];
+  final List<String> items;
+  
+  CardList({ this.items });
   
   @override
   Widget build(BuildContext context) {
     return new Container(
       child: CardItem(items),
-      padding: EdgeInsets.fromLTRB(30,235,30,20),
+      padding: EdgeInsets.fromLTRB(30,230,30,20),
     );    
   }
 }
@@ -25,63 +27,44 @@ class CardItem extends StatelessWidget {
     return Wrap(
       runSpacing: 30,
       children: items.map((item) => 
-        RaisedButton(
-          onPressed: () {
+        GestureDetector(
+          onTap: () => {
             Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ResultsPage()),
-          );
-          },
-          color: Colors.white,
-          elevation: 5,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 15),
-            child: Stack(
-              children: <Widget>[
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Stack(
-                    children: <Widget>[
-                      Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 5),
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Icon(
-                                          Icons.directions_bike,
-                                          color: Colors.amber,
-                                          size: 40,
-                                        )),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: Text(item)
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15.0),
-                                    child: Align(
-                                      child: Icon(
-                                        Icons.arrow_forward_ios
-                                      )
-                                    ),
-                                  )
-                                ],
-                              ),
-                              
-                            ],
-                          ))
-                    ],
-                  ),
-                )
-              ]
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultsPage()
+              ),
             ),
-          ),
-        )).toList(),
-      );
+          },
+          child: new Card(
+            elevation: 5.0,
+            child: new Padding(
+              padding: EdgeInsets.fromLTRB(15, 15, 15, 15),
+              child: ListTile(
+                leading: new Icon(
+                    Icons.directions_car,
+                    color: Colors.amber,
+                    size: 40
+                  ),
+                title: new Column(
+                  children: <Widget>[
+                    Text(item)
+                  ],
+                ),
+                trailing: new Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 17.0),
+                      child: Icon(Icons.arrow_forward_ios)
+                    )
+                  ],
+                )
+              ),
+            )
+          )
+        )
+      ).toList(),
+    );
   }
 }
+
