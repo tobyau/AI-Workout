@@ -28,14 +28,14 @@ class CardItem extends StatelessWidget {
       runSpacing: 30,
       children: items.map((item) => 
         GestureDetector(
-          onTap: () => {
+          onTap: () => [
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ResultsPage()
               ),
             ),
-          },
+          ],
           child: new Card(
             elevation: 5.0,
             child: new Padding(
