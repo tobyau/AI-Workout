@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../pages/HomePage.dart';
+import '../pages/WorkoutPage.dart';
 
 class CardList extends StatelessWidget{
   final List<String> items;
@@ -18,6 +17,7 @@ class CardList extends StatelessWidget{
 
 class CardItem extends StatelessWidget {
   final List<String> items;
+  List<String> backWorkouts = ['Lats', 'Upper Back', 'Lower Back']; 
   
   CardItem(this.items);
   
@@ -28,11 +28,15 @@ class CardItem extends StatelessWidget {
       children: items.map((item) => 
         GestureDetector(
           onTap: () => {
+            print("tapped"),
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage()
+                builder: (context) => WorkoutPage(
+                  title: item,
+                )
               ),
+              
             )
           },
           child: new Card(
