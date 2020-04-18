@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ai_workout/components/auth.dart';
 import 'package:ai_workout/components/camera.dart';
+import '../components/drawer.dart';
 
 import './WorkoutPage.dart';
 
@@ -85,6 +86,9 @@ class _HomePageState extends State<HomePage>
           MaterialPageRoute(
             builder: (context) => WorkoutPage(
               title: title,
+              auth: widget.auth,
+              logoutCallback: widget.logoutCallback,
+              userId: widget.userId,
             )
           )
         )
@@ -252,40 +256,12 @@ class _HomePageState extends State<HomePage>
   
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         key: _scaffoldKey,
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              DrawerHeader(
-                child: Text('Header'),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  image: DecorationImage(
-                    image: AssetImage('assets/water.jpeg'),
-                    fit: BoxFit.cover
-                  ),
-                ),
-              ),
-              ListTile(
-                leading: Icon(Icons.accessible),
-                title: Text('Item 1'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }
-              ),
-              ListTile(
-                leading: Icon(Icons.accessible),
-                title: Text('Log Out'),
-                onTap: () {
-                  // Navigator.of(context).pop();
-                  signOut();
-                }
-              )
-            ],
-          )
+        drawer: DrawerList(
+          auth: widget.auth, 
+          logoutCallback: widget.logoutCallback,
+          userId: widget.userId
         ),
         body: Stack(
           children: <Widget>[
@@ -311,7 +287,6 @@ class _HomePageState extends State<HomePage>
             ),
           ]
         )
-      )
     );
   }
 }

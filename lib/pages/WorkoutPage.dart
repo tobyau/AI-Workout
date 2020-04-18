@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import '../components/drawer.dart';
 import '../components/card_list.dart';
+import 'package:ai_workout/components/auth.dart';
 
 class WorkoutPage extends StatefulWidget {
   final String title; 
-  // final List<String> cards;
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
   
-  // WorkoutPage({ this.title, this.cards });
-  WorkoutPage({ this.title });
+  WorkoutPage({ this.title, this.auth, this.userId, this.logoutCallback });
   
   @override 
     State<StatefulWidget> createState() {
@@ -34,7 +37,7 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
   List<String> cards(String title) {
     switch(title) {
       case "BACK":
-         return ["Lats", "Upper Back"];
+         return ["Lats", "Upper Back", "Lats", "Upper Back","Lats", "Upper Back", "Lats", "Upper Back"];
     }
   }
   
@@ -53,61 +56,83 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
+      drawer: DrawerList(
+        auth: widget.auth, 
+        logoutCallback: widget.logoutCallback,
+        userId: widget.userId
+      ),
+      body: SlidingUpPanel(
+        panel: SingleChildScrollView(
+          child: Stack(
             children: <Widget>[
-              DrawerHeader(
-                child: Text('Header'),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  image: DecorationImage(
-                    image: AssetImage('assets/water.jpeg'),
-                    fit: BoxFit.cover
-                  ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10, 30, 10, 10),
+                child: Center(
+                  child: Text(
+                    "Workouts",
+                    style: TextStyle(
+                      fontSize: 30
+                    )
+                  )
                 ),
               ),
-              ListTile(
-                leading: Icon(Icons.accessible),
-                title: Text('Item 1'),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }
-              ),
-              ListTile(
-                leading: Icon(Icons.accessible),
-                title: Text('Log Out'),
-                onTap: () {
-                  // Navigator.of(context).pop();
-                  // signOut();
-                }
-              )
-            ],
+              CardList(items: cards(widget.title)),
+            ]
           )
         ),
-      body: SingleChildScrollView(
-        child: Stack( 
+        header: Padding(
+          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 2.1),
+          child: Icon(
+            IconData(57952, fontFamily: 'MaterialIcons')
+          )
+        ),
+        minHeight: 465,
+        maxHeight: 600,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 20.0,
+            color: Colors.black
+          )
+        ],
+        borderRadius: new BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30)
+        ),
+        body: Stack( 
           children: <Widget>[
-            Image.asset('assets/temp.jpg'),
-            Container(
+            Image(
+              image: AssetImage('assets/squat.jpg'),
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              top: 250,
+              left: 30,
               child: Text(
                 widget.title,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 30
+                  fontSize: 27
                 )
               ),
-              padding: EdgeInsets.fromLTRB(30,130,30,20),
             ),
-            CardList(items: cards(widget.title)),
             Positioned(
-              left: 20.0,
-              top: 30.0,
+              left: 15.0,
+              top: 40.0,
               child: IconButton(
-                icon: AnimatedIcon(
-                  icon: AnimatedIcons.menu_close,
-                  progress: controller,
+                // icon: AnimatedIcon(
+                //   icon: AnimatedIcons.shor,
+                //   progress: controller,
+                //   color: Colors.white,
+                // ),
+                icon: Icon(
+                  IconData(
+                    57953, 
+                    fontFamily: 'MaterialIcons', 
+                    matchTextDirection: true,
+                  ),
                   color: Colors.white,
+                  size: 45,
+                  
                 ),
                 onPressed: () => {
                   _handleOnPressed(),

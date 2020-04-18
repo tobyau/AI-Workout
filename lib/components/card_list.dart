@@ -10,7 +10,7 @@ class CardList extends StatelessWidget{
   Widget build(BuildContext context) {
     return new Container(
       child: CardItem(items),
-      padding: EdgeInsets.fromLTRB(30,230,30,20),
+      padding: EdgeInsets.fromLTRB(30,100,30,20),
     );    
   }
 }
@@ -36,7 +36,6 @@ class CardItem extends StatelessWidget {
                   title: item,
                 )
               ),
-              
             )
           },
           child: new Card(
