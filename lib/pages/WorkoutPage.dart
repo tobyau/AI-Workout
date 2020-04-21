@@ -23,21 +23,43 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
   AnimationController controller; 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   
+  List<String> back = ["Lats", "Upper Back", "Lower Back", "Middle Back"];
+  List<String> chest = ["Upper Chest", "Middle Chest", "Lower Chest"];
+  List<String> legs = ["Quadriceps", "Glutes", "Hamstrings", "Calves"];
+  List<String> arms = ["Biceps", "Triceps", "Forearms"];
+  List<String> shoulders = ["Front Delts", "Side Delts", "Rear Delts"];
+  List<String> workouts;
+  
   bool isClicked = false;
     
   @override 
   void initState() {
     super.initState();
+    cards(widget.title);
+    
     controller = AnimationController(
       duration: const Duration(milliseconds: 500),
       vsync: this
     );
   }
   
-  List<String> cards(String title) {
+  void cards(String title) {
     switch(title) {
       case "BACK":
-         return ["Lats", "Upper Back", "Lats", "Upper Back","Lats", "Upper Back", "Lats", "Upper Back"];
+        workouts = back;
+        break;
+      case "CHEST":
+        workouts = chest;
+        break;
+      case "LEGS":
+        workouts = legs;
+        break;
+      case "ARMS":
+        workouts = arms;
+        break;
+      case "Shoulders":
+        workouts = shoulders;
+        break;
     }
   }
   
@@ -76,12 +98,17 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
                   )
                 ),
               ),
-              CardList(items: cards(widget.title)),
+              CardList(
+                items: workouts,
+                auth: widget.auth,
+                logoutCallback: widget.logoutCallback,
+                userId: widget.userId
+              ),
             ]
           )
         ),
         header: Padding(
-          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width / 2.1),
+          padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.5),
           child: Icon(
             IconData(57952, fontFamily: 'MaterialIcons')
           )
@@ -119,11 +146,6 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
               left: 15.0,
               top: 40.0,
               child: IconButton(
-                // icon: AnimatedIcon(
-                //   icon: AnimatedIcons.shor,
-                //   progress: controller,
-                //   color: Colors.white,
-                // ),
                 icon: Icon(
                   IconData(
                     57953, 

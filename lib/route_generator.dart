@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './main.dart';
 import './pages/splash_screen.dart';
 import 'package:ai_workout/pages/root.dart';
 import 'package:ai_workout/components/auth.dart';
