@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage>
   
   int _currentIndex = 0;
   final List<Widget> _children = [
-    TakePictureScreen(camera: null),
+    //TakePictureScreen(camera: null),
     WorkoutPage(
       title: 'Back', 
       cards: ['Lats', 'Upper Back', 'Lower Back', 'Lats', 'Upper Back', 'Lower Back']),
