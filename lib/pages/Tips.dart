@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:ai_workout/components/auth.dart';
 import '../components/drawer.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class TipsPage extends StatefulWidget {
   final String title; 
+  final String imgPath;
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
   
-  TipsPage({ this.title, this.auth, this.userId, this.logoutCallback });
+  TipsPage({ this.title, this.imgPath, this.auth, this.userId, this.logoutCallback });
   
   @override 
     State<StatefulWidget> createState() {
@@ -74,7 +74,7 @@ class _TipsPage extends State<TipsPage> {
       body: Stack(
         children: <Widget>[
           Image(
-            image: AssetImage('assets/squat.jpg'),
+            image: AssetImage(widget.imgPath),
             fit: BoxFit.cover,
           ),
           Positioned(
@@ -109,7 +109,25 @@ class _TipsPage extends State<TipsPage> {
             ),
           ),
           
-          
+          Positioned(
+            top: 130,
+            left: MediaQuery.of(context).size.width * .43,
+            child: Container(
+              child:  Icon(
+                Icons.play_arrow,
+                color: Colors.white,
+                size: 55,
+              ),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 70, 
+                    color: Colors.grey
+                  )
+                ]
+              ),
+            )
+          ),
           
           Container(
             height: MediaQuery.of(context).size.height * .7,
@@ -135,15 +153,6 @@ class _TipsPage extends State<TipsPage> {
                     )
                   ),
                   _tips(),
-                  Container(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image(
-                        image: AssetImage('assets/latpulldown.jpg')
-                      ),
-                    ),
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 40),
-                  )
                 ],
               )
             ),

@@ -4,11 +4,12 @@ import 'package:ai_workout/components/auth.dart';
 
 class CardList extends StatelessWidget{
   final List<String> items;
+  final String imgPath; 
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
   
-  CardList({ this.items, this.auth, this.userId, this.logoutCallback });
+  CardList({ this.items, this.imgPath, this.auth, this.userId, this.logoutCallback });
   
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class CardList extends StatelessWidget{
                 MaterialPageRoute(
                   builder: (context) => TipsPage(
                     title: item,
+                    imgPath: imgPath,
                     auth: auth,
                     logoutCallback: logoutCallback,
                     userId: userId,

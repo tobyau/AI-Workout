@@ -23,11 +23,42 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
   AnimationController controller; 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   
-  List<String> back = ["Lats", "Upper Back", "Lower Back", "Middle Back"];
-  List<String> chest = ["Upper Chest", "Middle Chest", "Lower Chest"];
-  List<String> legs = ["Quadriceps", "Glutes", "Hamstrings", "Calves"];
-  List<String> arms = ["Biceps", "Triceps", "Forearms"];
-  List<String> shoulders = ["Front Delts", "Side Delts", "Rear Delts"];
+  String imgPath; 
+  
+  List<String> back = [
+    "Pull-Ups",
+    "Lat Pulldown",
+    "Deadlift",
+    "Dumbbell Single Arm Row", 
+    "Bent-Over Dumbbell Row", 
+    "Bent-Over Barbell Rows", 
+    "Seated Cable Row"
+  ];
+  
+  List<String> chest = [
+    "Incline Bench Press", 
+    "Flat Bench Press", 
+    "Decline Bench Press",
+    "Push-ups"
+  ];
+  List<String> legs = [
+    "Squat", 
+    "Lunges", 
+    "Front Squat", 
+    "Leg Press",
+    "Calf Raises"
+  ];
+  List<String> arms = [
+    "Dips", 
+    "Bicep Curls", 
+    "Skull Crushers",
+    "Decline Triceps Extension"
+  ];
+  List<String> shoulders = [
+    "Barbell Overhead Shoulder Press", 
+    "Seated Dumbbell Shoulder Press", 
+    "Reverse Cable Crossover"
+  ];
   List<String> workouts;
   
   bool isClicked = false;
@@ -47,18 +78,23 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
     switch(title) {
       case "BACK":
         workouts = back;
+        imgPath = 'assets/category/back.jpg';
         break;
       case "CHEST":
         workouts = chest;
+        imgPath = 'assets/category/chest.jpg';
         break;
       case "LEGS":
         workouts = legs;
+        imgPath = 'assets/category/legs.jpg';
         break;
       case "ARMS":
         workouts = arms;
+        imgPath = 'assets/category/arms.jpg';
         break;
       case "Shoulders":
         workouts = shoulders;
+        imgPath = 'assets/category/shouldes.jpg';
         break;
     }
   }
@@ -100,6 +136,7 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
               ),
               CardList(
                 items: workouts,
+                imgPath: imgPath,
                 auth: widget.auth,
                 logoutCallback: widget.logoutCallback,
                 userId: widget.userId
@@ -128,7 +165,7 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
         body: Stack( 
           children: <Widget>[
             Image(
-              image: AssetImage('assets/squat.jpg'),
+              image: AssetImage(imgPath),
               fit: BoxFit.cover,
             ),
             Positioned(

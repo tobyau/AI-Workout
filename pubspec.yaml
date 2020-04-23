@@ -67,8 +67,14 @@ flutter:
    - assets/temp.jpg
    - assets/splash.jpg
    - assets/water.jpeg
-   - assets/squat.jpg
    - assets/latpulldown.jpg
+   - assets/category/arms.jpg
+   - assets/category/back.jpg
+   - assets/category/chest.jpg
+   - assets/category/shoulders.jpg
+   - assets/category/legs.jpg
+   - assets/workout/squat.jpg
+   - assets/workout/deadlift.jpg
     
   #  - images/a_dot_ham.jpeg
 
