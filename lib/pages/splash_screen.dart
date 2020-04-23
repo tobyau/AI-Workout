@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import './HomePage.dart';
 
 import 'package:ai_workout/pages/root.dart';
 import 'package:ai_workout/components/auth.dart';
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   
   Future<Timer> loadData() async {
-    return new Timer(Duration(seconds: 7), onDoneLoading);
+    return new Timer(Duration(seconds: 2), onDoneLoading);
   }
   
   onDoneLoading() async {
@@ -59,16 +58,6 @@ class _SplashScreenState extends State<SplashScreen> {
             )
           ],
         )
-        // child: CircularProgressIndicator(
-        //   valueColor: AlwaysStoppedAnimation<Color>(Colors.redAccent),
-        // ),
-        // child: Text(
-        //   'AI-Workout',
-        //   style: TextStyle(
-        //     color: Colors.white,
-        //     fontSize: 40
-        //   )
-        // )
       ),
     );
   }

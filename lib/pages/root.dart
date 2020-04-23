@@ -53,6 +53,7 @@ class _RootPageState extends State<RootPage> {
       authStatus = AuthStatus.NOT_LOGGED_IN;
       _userId = "";
     });
+    Navigator.of(context).pushNamed('/login');
   }
 
   Widget buildWaitingScreen() {

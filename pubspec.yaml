@@ -25,6 +25,10 @@ dependencies:
   path:
   video_player: 
   tflite: ^1.0.5
+    
+  sliding_up_panel: ^1.0.2
+  
+  http: ^0.12.0+4
   
   # Add the dependency for the Firebase Core Flutter SDK
   firebase_core: 0.4.0+9
@@ -66,8 +70,20 @@ flutter:
    - assets/temp.jpg
    - assets/splash.jpg
    - assets/stats.png
+   - assets/pilates.png
+   - assets/logo_final.png
    - assets/labels.txt
    - assets/posenet_mv1_075_float_from_checkpoints.tflite
+   - assets/water.jpeg
+   - assets/latpulldown.jpg
+   - assets/category/arms.jpg
+   - assets/category/back.jpg
+   - assets/category/chest.jpg
+   - assets/category/shoulders.jpg
+   - assets/category/legs.jpg
+   - assets/workout/squat.jpg
+   - assets/workout/deadlift.jpg
+    
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
