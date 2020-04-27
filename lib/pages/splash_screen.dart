@@ -37,8 +37,9 @@ class _SplashScreenState extends State<SplashScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/splash.jpg'),
-          fit: BoxFit.cover 
+          image: AssetImage('assets/splash1.jpg'),
+          fit: BoxFit.fitWidth,
+          alignment: Alignment.bottomLeft,
         ),
       ),
       child: Center(
