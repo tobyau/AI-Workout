@@ -78,8 +78,8 @@ class _HomePageState extends State<HomePage>
           top: 15.0
         ),
         child: Container(
-          height: 100.0,
-          width: 300,//double.infinity,
+          height: 150.0,
+          width: 250,//double.infinity,
           color: Colors.white,
           child: Row(
             children: <Widget>[
@@ -88,26 +88,32 @@ class _HomePageState extends State<HomePage>
                 height: 150.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(imgPath), fit: BoxFit.cover)),
+                      image: AssetImage(imgPath), fit: BoxFit.contain)),
               ),
               SizedBox(width: 4.0),
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontFamily: 'Quicksand',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
-                      ),
+                        Container(
+                           
+                          width: 100.0,
+                          child: Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Quicksand',
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold),
+                          ),
+                        ),
                     ],
                   ),
                 ],
-              )
-            ],
+             )
+           ],
           ),
         ),
       )
@@ -194,11 +200,11 @@ class _HomePageState extends State<HomePage>
               ],
             ),
             SizedBox(height: 10.0),
-            itemCard('BACK', 'assets/temp.jpg'),
-            itemCard('CHEST', 'assets/temp.jpg'),
-            itemCard('LEGS', 'assets/temp.jpg'),
-            itemCard('ARMS', 'assets/temp.jpg'),
-            itemCard('CORE', 'assets/temp.jpg')
+            itemCard('Back', 'assets/back.png'),
+            itemCard('Chest','assets/chest.png'),
+            itemCard('Legs', 'assets/legs.png'),
+            itemCard('Arms', 'assets/arms.png'),
+            itemCard('Core', 'assets/core.png')
           ],
         )
       ],

@@ -69,6 +69,11 @@ flutter:
    - assets/flutter-icon.png
    - assets/temp.jpg
    - assets/splash.jpg
+   - assets/arms.png
+   - assets/core.png
+   - assets/chest.png
+   - assets/legs.png
+   - assets/back.png
    - assets/stats.png
    - assets/pilates.png
    - assets/logo_final.png
