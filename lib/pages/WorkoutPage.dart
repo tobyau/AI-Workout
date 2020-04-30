@@ -76,19 +76,19 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
   
   void cards(String title) {
     switch(title) {
-      case "BACK":
+      case "Back":
         workouts = back;
         imgPath = 'assets/category/back.jpg';
         break;
-      case "CHEST":
+      case "Chest":
         workouts = chest;
         imgPath = 'assets/category/chest.jpg';
         break;
-      case "LEGS":
+      case "Legs":
         workouts = legs;
         imgPath = 'assets/category/legs.jpg';
         break;
-      case "ARMS":
+      case "Arms":
         workouts = arms;
         imgPath = 'assets/category/arms.jpg';
         break;
