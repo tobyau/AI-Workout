@@ -1,15 +1,33 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
+import 'package:tflite/tflite.dart';
+
 import 'package:ai_workout/components/auth.dart';
 import '../components/drawer.dart';
+import '../components/camera.dart';
+import '../components/bndbox.dart';
+
 
 class TipsPage extends StatefulWidget {
+  final List<CameraDescription> cameras;
+  final String model;
+  final String customModel;
   final String title; 
   final String imgPath;
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
   
-  TipsPage({ this.title, this.imgPath, this.auth, this.userId, this.logoutCallback });
+  TipsPage({ 
+    this.title, 
+    this.imgPath, 
+    this.auth, 
+    this.userId, 
+    this.logoutCallback,
+    this.cameras, 
+    this.model, 
+    this.customModel });
   
   @override 
     State<StatefulWidget> createState() {
@@ -18,6 +36,17 @@ class TipsPage extends StatefulWidget {
 }
 
 class _TipsPage extends State<TipsPage> {
+
+  List<dynamic> _recognitions;
+  int _imageHeight = 0;
+  int _imageWidth = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    var res = loadModel();
+    print('Model Response: ' + res.toString());
+  }
   
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool isClicked = false;
@@ -38,7 +67,23 @@ class _TipsPage extends State<TipsPage> {
   _displayDrawer(BuildContext context) {
     _scaffoldKey.currentState.openDrawer();
   }
-  
+
+  _setRecognitions(recognitions, imageHeight, imageWidth) {
+    if (!mounted) {
+      return;
+    }
+    setState(() {
+      _recognitions = recognitions;
+      _imageHeight = imageHeight;
+      _imageWidth = imageWidth;
+    });
+  }
+    loadModel() async {
+    return await Tflite.loadModel(
+      model: widget.model,
+    );
+  }
+
   Widget _tips() {
     return Container(
       child: Stack(
@@ -64,6 +109,7 @@ class _TipsPage extends State<TipsPage> {
   
   @override 
   Widget build(BuildContext context) {
+    Size screen = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       drawer: DrawerList(
@@ -73,6 +119,18 @@ class _TipsPage extends State<TipsPage> {
       ),
       body: Stack(
         children: <Widget>[
+          Camera(
+            cameras: widget.cameras,
+            setRecognitions: _setRecognitions,
+          ),
+          BndBox(
+            results: _recognitions == null ? [] : _recognitions,
+            previewH: max(_imageHeight, _imageWidth),
+            previewW: min(_imageHeight, _imageWidth),
+            screenH: screen.height,
+            screenW: screen.width,
+            customModel: widget.customModel,
+          ),
           Image(
             image: AssetImage(widget.imgPath),
             fit: BoxFit.cover,
