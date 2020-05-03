@@ -62,7 +62,7 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
   List<String> workouts;
   
   bool isClicked = false;
-    
+  
   @override 
   void initState() {
     super.initState();
@@ -139,7 +139,7 @@ class _WorkoutPageState extends State<WorkoutPage> with SingleTickerProviderStat
                 imgPath: imgPath,
                 auth: widget.auth,
                 logoutCallback: widget.logoutCallback,
-                userId: widget.userId
+                userId: widget.userId,
               ),
             ]
           )

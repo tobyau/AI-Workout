@@ -1,18 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:tflite/tflite.dart';
 
 import 'package:ai_workout/components/auth.dart';
 import '../components/drawer.dart';
-import '../components/camera.dart';
-import '../components/bndbox.dart';
+
+import '../pages/CameraPage.dart';
 
 
 class TipsPage extends StatefulWidget {
-  final List<CameraDescription> cameras;
-  final String model;
-  final String customModel;
   final String title; 
   final String imgPath;
   final BaseAuth auth;
@@ -24,10 +20,7 @@ class TipsPage extends StatefulWidget {
     this.imgPath, 
     this.auth, 
     this.userId, 
-    this.logoutCallback,
-    this.cameras, 
-    this.model, 
-    this.customModel });
+    this.logoutCallback });
   
   @override 
     State<StatefulWidget> createState() {
@@ -37,15 +30,10 @@ class TipsPage extends StatefulWidget {
 
 class _TipsPage extends State<TipsPage> {
 
-  List<dynamic> _recognitions;
-  int _imageHeight = 0;
-  int _imageWidth = 0;
 
   @override
   void initState() {
     super.initState();
-    var res = loadModel();
-    print('Model Response: ' + res.toString());
   }
   
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -66,22 +54,6 @@ class _TipsPage extends State<TipsPage> {
   
   _displayDrawer(BuildContext context) {
     _scaffoldKey.currentState.openDrawer();
-  }
-
-  _setRecognitions(recognitions, imageHeight, imageWidth) {
-    if (!mounted) {
-      return;
-    }
-    setState(() {
-      _recognitions = recognitions;
-      _imageHeight = imageHeight;
-      _imageWidth = imageWidth;
-    });
-  }
-    loadModel() async {
-    return await Tflite.loadModel(
-      model: widget.model,
-    );
   }
 
   Widget _tips() {
@@ -109,7 +81,6 @@ class _TipsPage extends State<TipsPage> {
   
   @override 
   Widget build(BuildContext context) {
-    Size screen = MediaQuery.of(context).size;
     return Scaffold(
       key: _scaffoldKey,
       drawer: DrawerList(
@@ -119,18 +90,6 @@ class _TipsPage extends State<TipsPage> {
       ),
       body: Stack(
         children: <Widget>[
-          Camera(
-            cameras: widget.cameras,
-            setRecognitions: _setRecognitions,
-          ),
-          BndBox(
-            results: _recognitions == null ? [] : _recognitions,
-            previewH: max(_imageHeight, _imageWidth),
-            previewW: min(_imageHeight, _imageWidth),
-            screenH: screen.height,
-            screenW: screen.width,
-            customModel: widget.customModel,
-          ),
           Image(
             image: AssetImage(widget.imgPath),
             fit: BoxFit.cover,
@@ -231,105 +190,25 @@ class _TipsPage extends State<TipsPage> {
                   ),
                 ]
               ),
-              child: Icon(
-                Icons.photo_camera,
-                size: 30,
-                color: Colors.white
+              
+              child: IconButton(
+                icon: Icon(Icons.photo_camera),
+                iconSize: 30,
+                color: Colors.white,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CameraPage()
+                    )
+                  );
+                },
               )
             ),
           ),
           
-          
         ],
       )
-      
-      // body: SlidingUpPanel(
-      //   panel: SingleChildScrollView(
-      //     child: Stack(
-      //       children: <Widget>[
-      //         Padding(
-      //           padding: EdgeInsets.fromLTRB(0, 30, 10, 0),
-      //           child: Center(
-      //             child: Text(
-      //               "TIPS",
-      //               style: TextStyle(
-      //                 fontSize: 30
-      //               )
-      //             )
-      //           ),
-      //         ),
-      //         _tips(),
-      //       ]
-      //     )
-      //   ),
-      //   minHeight: 600,
-      //   maxHeight: 600,
-      //   boxShadow: [
-      //     BoxShadow(
-      //       blurRadius: 20.0,
-      //       color: Colors.black
-      //     )
-      //   ],
-      //   borderRadius: new BorderRadius.only(
-      //     topLeft: Radius.circular(30),
-      //     topRight: Radius.circular(30)
-      //   ),
-      //   body: Stack( 
-      //     children: <Widget>[
-      //       Image(
-      //         image: AssetImage('assets/squat.jpg'),
-      //         fit: BoxFit.cover,
-      //       ),
-      //       Positioned(
-      //         top: 250,
-      //         left: 30,
-      //         child: Text(
-      //           widget.title,
-      //           style: TextStyle(
-      //             color: Colors.white,
-      //             fontSize: 27
-      //           )
-      //         ),
-      //       ),
-      //       Positioned(
-      //         left: 15.0,
-      //         top: 40.0,
-      //         child: IconButton(
-      //           icon: Icon(
-      //             IconData(
-      //               57953, 
-      //               fontFamily: 'MaterialIcons', 
-      //               matchTextDirection: true,
-      //             ),
-      //             color: Colors.white,
-      //             size: 45,
-                  
-      //           ),
-      //           onPressed: () => {
-      //             _handleOnPressed(),
-      //             _displayDrawer(context)
-      //           },
-      //         ),
-      //       ),
-      //       Positioned(
-      //         top: 260,
-      //         child: Container(
-      //           margin: EdgeInsets.only(left: MediaQuery.of(context).size.width / 2.3),
-      //           padding: EdgeInsets.all(15),
-      //           decoration: BoxDecoration(
-      //             color: Colors.black,
-      //             borderRadius: BorderRadius.circular(50)
-      //           ),
-      //           child: Icon(
-      //             Icons.photo_camera,
-      //             size: 30,
-      //             color: Colors.white
-      //           )
-      //         ),
-      //       )
-      //     ]
-      //   )
-      // )
     );
   }
 }
