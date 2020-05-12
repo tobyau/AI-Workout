@@ -20,7 +20,7 @@ class _CameraState extends State<CameraScreen> {
   CameraController controller;
   bool isDetecting = false;
 
-  static const platform = const MethodChannel('ondeviceML');
+  // static const platform = const MethodChannel('ondeviceML');
 
   @override
   void initState() {
@@ -48,24 +48,20 @@ class _CameraState extends State<CameraScreen> {
 
             int startTime = new DateTime.now().millisecondsSinceEpoch;
 
-            // Tflite.runPoseNetOnFrame(
-            //   bytesList: img.planes.map((plane) {
-            //     return plane.bytes;
-            //   }).toList(),
-            //   imageHeight: img.height,
-            //   imageWidth: img.width,
-            //   numResults: 1,
-            //   rotation: -90,
-            //   threshold: 0.2,
-            //   nmsRadius: 10,
-            // ).then((recognitions) {
-            //   int endTime = new DateTime.now().millisecondsSinceEpoch;
-            //   print("Detection took ${endTime - startTime}");
+            Tflite.runPoseNetOnFrame(
+              bytesList: img.planes.map((plane) {
+                return plane.bytes;
+              }).toList(),
+              imageHeight: img.height,
+              imageWidth: img.width,
+            ).then((recognitions) {
+              int endTime = new DateTime.now().millisecondsSinceEpoch;
+              print("Detection took ${endTime - startTime}");
 
-            //   widget.setRecognitions(recognitions, img.height, img.width);
+              widget.setRecognitions(recognitions, img.height, img.width);
 
-            //   isDetecting = false;
-            // });
+              isDetecting = false;
+            });
           }
         });
       });

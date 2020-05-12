@@ -24,7 +24,7 @@ dependencies:
   path_provider:
   path:
   video_player: 
-  tflite: ^1.0.5
+  tflite: ^1.0.4
   percent_indicator: ^2.1.1+1
     
   sliding_up_panel: ^1.0.2

@@ -5,21 +5,6 @@ import 'package:camera/camera.dart';
 import 'dart:math';
 import 'package:tflite/tflite.dart';
 
-List<CameraDescription> cameras;
-
-Future<List<CameraDescription>> getCameras() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  
-  try {
-    cameras = await availableCameras();
-  } on CameraException catch (e) {
-    print('Error: $e.code\nError Message: $e.message');
-  }
-  return cameras;
-}
-
-
-
 class CameraPage extends StatefulWidget {
   final List<CameraDescription> cameras;
   final List<dynamic> recognitions;
@@ -59,49 +44,40 @@ class _CameraPage extends State<CameraPage> {
     });
   }
     loadModel() async {
-    return await Tflite.loadModel(
-      model: widget.model,
-    );
+      String res;
+      res = await Tflite.loadModel(
+        model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
+      );
+      print(res);
   }
   
   @override 
   void initState() {
     super.initState();
-    var res = loadModel();
-    print('Model Response: ' + res.toString());
+    loadModel();
   }
 
   
   @override 
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
-    return FutureBuilder<List<CameraDescription>>(
-      future: getCameras(),
-      builder: (BuildContext context, AsyncSnapshot<List<CameraDescription>> snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: Text('Please wait it\'s loading'));
-        }
-        else {
-          return Scaffold(
-            body: Stack(
-              children: <Widget>[
-                CameraScreen(
-                  cameras: cameras,
-                  setRecognitions: _setRecognitions,
-                ),
-                BndBox(
-                  results: _recognitions == null ? [] : _recognitions,
-                  previewH: max(_imageHeight, _imageWidth),
-                  previewW: min(_imageHeight, _imageWidth),
-                  screenH: screen.height,
-                  screenW: screen.width,
-                  customModel: widget.customModel,
-                ),
-              ]
-            )
-          );
-        }
-      },
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          CameraScreen(
+            cameras: widget.cameras,
+            setRecognitions: _setRecognitions,
+          ),
+          BndBox(
+            results: _recognitions == null ? [] : _recognitions,
+            previewH: max(_imageHeight, _imageWidth),
+            previewW: min(_imageHeight, _imageWidth),
+            screenH: screen.height,
+            screenW: screen.width,
+            customModel: widget.customModel,
+          ),
+        ]
+      )
     );
   }
 }
