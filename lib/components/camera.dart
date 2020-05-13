@@ -20,7 +20,7 @@ class _CameraState extends State<CameraScreen> {
   CameraController controller;
   bool isDetecting = false;
 
-  // static const platform = const MethodChannel('ondeviceML');
+  static const platform = const MethodChannel('ondeviceML');
 
   @override
   void initState() {

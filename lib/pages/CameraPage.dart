@@ -43,18 +43,18 @@ class _CameraPage extends State<CameraPage> {
       _imageWidth = imageWidth;
     });
   }
-    loadModel() async {
-      String res;
-      res = await Tflite.loadModel(
-        model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
-      );
-      print(res);
+  
+  loadModel() async {
+    return await Tflite.loadModel(
+      model: "assets/posenet_mv1_075_float_from_checkpoints.tflite",
+    );
   }
   
   @override 
   void initState() {
     super.initState();
-    loadModel();
+    var res = loadModel();
+    print('Model Response: ' + res.toString());
   }
 
   
