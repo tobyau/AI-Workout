@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   
   Future<Timer> loadData() async {
-    return new Timer(Duration(seconds: 10), onDoneLoading);
+    return new Timer(Duration(seconds: 3), onDoneLoading);
   }
   
   onDoneLoading() async {
@@ -37,13 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
     return new MaterialApp(
       home: new Scaffold(
         backgroundColor: Colors.grey[300],
-        body: Center(
-              child: Column(
+        body: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-
-                   Image(
+                  Center(
+                   child: Image(
                     image: AssetImage('assets/logo_final.png'),
                       height: 200,
                       width: 200,
@@ -51,16 +50,32 @@ class _SplashScreenState extends State<SplashScreen> {
                       color: Colors.grey[300],
                       colorBlendMode: BlendMode.darken,
                       //alignment: Alignment.bottomLeft,
+                   ),
                   ),
-                  Text(
-                    'AI-Workout',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: 30.0,
-                        color: Colors.black,
-                      ),
-                    ),
-                  // Align(
+                    Text(
+                        'AI-Workout',
+                          style: TextStyle(
+                            fontFamily: 'Roboto',
+                            fontSize: 30.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                  //  Align(
+                  //    alignment: Alignment.bottomCenter,
+                      
+                  //   // child: SizedBox(
+                  //   //   height: 15,
+                  //   //   width: 200,
+                  //     child: LinearProgressIndicator(
+                  //       backgroundColor: Colors.white,
+                  //         valueColor: AlwaysStoppedAnimation<Color>(Colors.blue,),
+                  //         value: 0.8,
+                  //     ),
+                  //   //),
+                  //   ),
+
+                
+                  // bottomSheet: Align(
                   //   alignment: Alignment.bottomCenter,
                   //   child:LinearProgressIndicator(
                   //         backgroundColor: Colors.white,
@@ -70,8 +85,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   //   ),
                 ],
               ),
+          
         ),
-      ),
     );
   }
 }
