@@ -74,7 +74,7 @@ class _CameraPage extends State<CameraPage> {
             previewW: min(_imageHeight, _imageWidth),
             screenH: screen.height,
             screenW: screen.width,
-            customModel: widget.customModel,
+            customModel: "Trikonasana",
           ),
         ]
       )

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "838012480436",
+    "firebase_url": "https://ai-workout-4be10.firebaseio.com",
+    "project_id": "ai-workout-4be10",
+    "storage_bucket": "ai-workout-4be10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838012480436:android:d297a4b6934a2af21ce0e1",
+        "android_client_info": {
+          "package_name": "com.example.aiWorkout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838012480436-kjk55pv6glib131fq9qoe9horapu7jvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFSGcKOiMr7MysQYqAlrWTLTQC4GZhKfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838012480436-kjk55pv6glib131fq9qoe9horapu7jvc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "838012480436-9m0l25mc8clpfe6316n8kmerhuj8ahjq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.aiWorkout"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

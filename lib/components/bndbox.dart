@@ -113,8 +113,8 @@ class BndBox extends StatelessWidget {
             child: LinearPercentIndicator(
               animation: true,
               lineHeight: 20.0,
-              animationDuration: 500,
-              animateFromLastPercent: true,
+              // animationDuration: 500,
+              // animateFromLastPercent: true,
               percent: _counter,
               center: Text("${(_counter * 100).toStringAsFixed(1)} %"),
               linearStrokeCap: LinearStrokeCap.roundAll,
